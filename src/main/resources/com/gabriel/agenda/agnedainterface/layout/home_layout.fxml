@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.gabriel.agenda.agnedainterface.css.*?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gabriel.agenda.agnedainterface.views.HomeView"
+            prefHeight="400.0" prefWidth="600.0">
+    <HBox AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0"><Label fx:id="JDBLabel" style="-fx-font-size: 20px; "/></HBox>
+    <TabPane AnchorPane.topAnchor="50.0"
+    AnchorPane.rightAnchor="0.0"
+    AnchorPane.leftAnchor="0.0"
+    AnchorPane.bottomAnchor="0.0">
+        <tabs>
+            <Tab text="Lista" style="-fx-font-size: 15px">
+                <content>
+
+                </content>
+            </Tab>
+            <Tab text="Insertar" style="-fx-font-size: 15px">
+                <content>
+                    <VBox spacing="20" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+                        <Label style="-fx-font-size: 30px">Insertar Contacto</Label>
+                        <TextField promptText="Télefono" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
+                        <TextField promptText="Nombre" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
+                        <TextField promptText="Apellidos" maxWidth="500" minHeight="50"  styleClass="border_radius_text_field"/>
+                        <TextField promptText="Correo Electronico" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
+                        <HBox alignment="CENTER" spacing="10">
+                            <TextField promptText="Numero o Piso" minWidth="100" minHeight="50" styleClass="border_radius_text_field"/>
+                            <TextField promptText="Calle" minWidth="100" minHeight="50" styleClass="border_radius_text_field"/>
+                            <TextField promptText="Localidad" minWidth="200" minHeight="50" styleClass="border_radius_text_field"/>
+                            <TextField promptText="Provincia" minWidth="250" minHeight="50" styleClass="border_radius_text_field"/>
+                            <TextField promptText="País" minWidth="250" minHeight="50" styleClass="border_radius_text_field" />
+                        </HBox>
+                        <Button fx:id="" styleClass="sm_button"
+                                prefWidth="100">
+                            Crear
+                        </Button>
+                    </VBox>
+                </content>
+            </Tab>
+            <Tab text="Eliminar" style="-fx-font-size: 15px">
+                <content>
+                    <VBox spacing="40" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+                        <Label style="-fx-font-size: 20px">Inserta el número de Télefono (con prefijo) o el Nombre del contacto</Label>
+                        <TextField promptText="Nombre o Télefono" maxWidth="500" minHeight="50" style="-fx-background-radius: 20px; -fx-border-radius: 20px; -fx-font-size: 15px"/>
+                        <Button fx:id="" style="-fx-font-size: 15px; -fx-border-radius: 20px; -fx-background-radius: 20px; -fx-border-style: solid; -fx-border-color: black; -fx-border-width: 0.5"
+                                prefWidth="100">
+                            Eliminar
+                        </Button>
+                    </VBox>
+                </content>
+            </Tab>
+            <Tab text="Buscar" style="-fx-font-size: 15px">
+
+            </Tab>
+        </tabs>
+    </TabPane>
+</AnchorPane>

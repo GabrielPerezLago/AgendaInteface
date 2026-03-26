@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "marcellus";
+    src: url("../assets/fonts/marcellus.ttf");
+}
+
+.root {
+    -fx-font-family: "marcellus";
+}
