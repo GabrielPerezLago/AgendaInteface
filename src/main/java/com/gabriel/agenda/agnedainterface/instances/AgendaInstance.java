@@ -1,4 +1,4 @@
-package com.gabriel.agenda.agnedainterface.services;
+package com.gabriel.agenda.agnedainterface.instances;
 
 public class AgendaInstance {
     private static AgendaInstance instance;

@@ -1,6 +1,6 @@
 package com.gabriel.agenda.agnedainterface.views;
 
-import com.gabriel.agenda.agnedainterface.services.AgendaInstance;
+import com.gabriel.agenda.agnedainterface.instances.AgendaInstance;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
