@@ -9,6 +9,8 @@ module com.gabriel.agenda.agnedainterface {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.core;
     requires javafx.base;
+    requires java.sql;
+    requires org.apache.commons.lang3;
 
     opens com.gabriel.agenda.agnedainterface to javafx.fxml;
     exports com.gabriel.agenda.agnedainterface;
@@ -22,6 +24,8 @@ module com.gabriel.agenda.agnedainterface {
     exports com.gabriel.agenda.agnedainterface.controllers;
     exports com.gabriel.agenda.agnedainterface.components;
     opens com.gabriel.agenda.agnedainterface.components to javafx.fxml;
+    exports com.gabriel.agenda.agnedainterface.models.errors;
+    opens com.gabriel.agenda.agnedainterface.models.errors to javafx.fxml;
 
 
 }

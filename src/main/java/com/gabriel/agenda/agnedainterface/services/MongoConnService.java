@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gabriel.agenda.agnedainterface.models.Contacto;
 import com.gabriel.agenda.agnedainterface.models.NameDTO;
 import com.gabriel.agenda.agnedainterface.models.TelefonoDTO;
+import com.gabriel.agenda.agnedainterface.models.errors.CreateErrorsModel;
 import com.gabriel.agenda.agnedainterface.services.interfaces.DataServiceImpl;
 import com.gabriel.agenda.agnedainterface.utils.DataUtils;
 import javafx.util.Pair;
@@ -33,7 +34,8 @@ public class MongoConnService implements DataServiceImpl {
         if(response.statusCode() == 201){
             return "Contacto creado correctamente";
         } else {
-            return response.body();
+            CreateErrorsModel mdl = mapper.readValue(response.body(), CreateErrorsModel.class);
+            return mdl.toString();
         }
     }
 

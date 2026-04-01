@@ -7,6 +7,7 @@ import com.gabriel.agenda.agnedainterface.instances.ContactosInstance;
 import com.gabriel.agenda.agnedainterface.models.Contacto;
 import com.gabriel.agenda.agnedainterface.services.thread.MongoThreadService;
 import com.gabriel.agenda.agnedainterface.services.thread.MySqlThreadService;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -15,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 import java.util.List;
 
@@ -53,6 +55,10 @@ public class HomeView {
     private TextField PaisDireccion;
     @FXML
     private Label ErrorLbl;
+
+    //DELETE
+    @FXML
+    private TextField DeleteParamsTextField;
 
     //Buttons
     @FXML
@@ -127,8 +133,15 @@ public class HomeView {
                     direccion
             );
 
-            ErrorLbl.setText(controller.createContacto(agendaInstance.getDbSelect(), contacto));
+            String txt = controller.createContacto(agendaInstance.getDbSelect(), contacto);
+            if (txt.contains("Error")) {
+                ErrorLbl.getStyleClass().add("failed");
+            } else {
+                ErrorLbl.getStyleClass().add("success");
+            }
+            ErrorLbl.setText(txt);
             renderContactosThread();
+            clearCreateFields();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -145,5 +158,12 @@ public class HomeView {
         LocalidadDireccion.clear();
         ProvinciaDireccion.clear();
         PaisDireccion.clear();
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(10));
+        pause.setOnFinished(e -> {
+            ErrorLbl.setText("");
+            ErrorLbl.getStyleClass().removeAll("failed", "success");
+        });
+        pause.play();
     }
 }

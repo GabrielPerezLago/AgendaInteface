@@ -1,0 +1,9 @@
+.success {
+    -fx-text-fill: green;
+    -fx-font-size: 20px;
+}
+
+.failed {
+    -fx-text-fill: red;
+    -fx-font-size: 20px;
+}
