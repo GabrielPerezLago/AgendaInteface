@@ -11,6 +11,7 @@ import java.io.IOException;
 public class DBView {
     private AgendaInstance inst = AgendaInstance.getInstance();
     private StageUtils sUtils = new StageUtils();
+
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -28,12 +29,12 @@ public class DBView {
 
     private void setEvent(Button btn, String db){
         btn.setOnAction(event -> {
-           try {
-               inst.setDbSelect(db);
-               sUtils.renderStage(DBView.class, event, "/com/gabriel/agenda/agnedainterface/layout/home_layout.fxml");
-           } catch (IOException e) {
-               e.printStackTrace();
-           }
+            try {
+                inst.setDbSelect(db);
+                sUtils.renderStage(DBView.class, event, "/com/gabriel/agenda/agnedainterface/layout/home_layout.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 }

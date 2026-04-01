@@ -1,0 +1,11 @@
+
+.border_radius {
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px
+}
+
+.border_radius_text_field {
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-font-size: 15px;
+}

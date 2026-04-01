@@ -1,0 +1,27 @@
+
+.df_button {
+    -fx-font-size: 30px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: black;
+    -fx-border-width: 0.5
+}
+
+.large_button {
+    -fx-font-size: 80px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: black;
+    -fx-border-width: 0.5
+}
+
+.sm_button {
+    -fx-font-size: 15px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: black;
+    -fx-border-width: 0.5
+}

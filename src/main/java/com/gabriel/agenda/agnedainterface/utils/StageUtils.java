@@ -16,7 +16,8 @@ public class StageUtils {
         scene.getStylesheets().addAll(
                 getClass().getResource("/com/gabriel/agenda/agnedainterface/css/app_fonts.css").toExternalForm(),
                 getClass().getResource("/com/gabriel/agenda/agnedainterface/css/border_radius.css").toExternalForm(),
-                getClass().getResource("/com/gabriel/agenda/agnedainterface/css/button_style.css").toExternalForm()
+                getClass().getResource("/com/gabriel/agenda/agnedainterface/css/button_style.css").toExternalForm(),
+                getClass().getResource("/com/gabriel/agenda/agnedainterface/css/contacto_card.css").toExternalForm()
         );
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

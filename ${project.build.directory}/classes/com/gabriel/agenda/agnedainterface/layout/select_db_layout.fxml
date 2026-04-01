@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gabriel.agenda.agnedainterface.views.DBView"
+            prefHeight="768.0" prefWidth="1366.0">
+   <VBox AnchorPane.bottomAnchor="0.0"
+         AnchorPane.leftAnchor="0.0"
+         AnchorPane.rightAnchor="0.0"
+         AnchorPane.topAnchor="0.0"
+         alignment="CENTER"
+         spacing="100">
+       <VBox alignment="CENTER">
+           <Label styleClass="button_width_margin" style="-fx-font-size: 80px"> Agenda de contactos </Label>
+           <Label style="-fx-font-size: 30px">¿ Que base de datos desea usar ?</Label>
+       </VBox>
+       <HBox alignment="CENTER" spacing="30">
+           <Button fx:id="JButtonMongo" prefWidth="300" styleClass="df_button">
+               Mongo DB
+           </Button>
+           <Button fx:id="JButtonMysql" prefWidth="300" styleClass="df_button">
+               MySql
+           </Button>
+       </HBox>
+   </VBox>
+</AnchorPane>
