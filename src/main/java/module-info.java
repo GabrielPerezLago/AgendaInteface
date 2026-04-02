@@ -26,6 +26,7 @@ module com.gabriel.agenda.agnedainterface {
     opens com.gabriel.agenda.agnedainterface.components to javafx.fxml;
     exports com.gabriel.agenda.agnedainterface.models.errors;
     opens com.gabriel.agenda.agnedainterface.models.errors to javafx.fxml;
+    exports com.gabriel.agenda.agnedainterface.utils;
 
 
 }

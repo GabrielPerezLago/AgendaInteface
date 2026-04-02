@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.gabriel.agenda.agnedainterface.models.Contacto;
 import com.gabriel.agenda.agnedainterface.models.NameDTO;
 import com.gabriel.agenda.agnedainterface.models.TelefonoDTO;
+import com.gabriel.agenda.agnedainterface.models.errors.CreateErrorsModel;
+import com.gabriel.agenda.agnedainterface.models.errors.DeleteErrorsModel;
 import com.gabriel.agenda.agnedainterface.services.interfaces.DataServiceImpl;
 import com.gabriel.agenda.agnedainterface.utils.DataUtils;
 import javafx.util.Pair;
@@ -35,7 +37,8 @@ public class MySqlConnService implements DataServiceImpl {
         if(response.statusCode() == 201) {
             return "Contacto creado correctamente";
         } else  {
-            return response.body();
+            CreateErrorsModel data = mapper.readValue(response.body(), CreateErrorsModel.class);
+            return data.toString();
         }
     }
 
@@ -53,7 +56,8 @@ public class MySqlConnService implements DataServiceImpl {
         HttpResponse<String> response = service.deleteContactos(URI, json);
 
         if(response.statusCode() == 400) {
-            return response.body();
+            DeleteErrorsModel data = mapper.readValue(response.body(), DeleteErrorsModel.class);
+            return data.toString();
         } else {
             return "Contacto eliminado correctamente";
         }

@@ -7,6 +7,7 @@ import com.gabriel.agenda.agnedainterface.instances.ContactosInstance;
 import com.gabriel.agenda.agnedainterface.models.Contacto;
 import com.gabriel.agenda.agnedainterface.services.thread.MongoThreadService;
 import com.gabriel.agenda.agnedainterface.services.thread.MySqlThreadService;
+import com.gabriel.agenda.agnedainterface.utils.HomeViewUtils;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class HomeView {
@@ -25,7 +27,7 @@ public class HomeView {
     private ContactosInstance contactosInstance = ContactosInstance.getInstance();
     private List<Contacto> contactos;
     private ContactosController controller = new ContactosController();
-
+    private HomeViewUtils utils = new HomeViewUtils();
 
     @FXML
     private Label JDBLabel;
@@ -59,7 +61,8 @@ public class HomeView {
     //DELETE
     @FXML
     private TextField DeleteParamsTextField;
-
+    @FXML
+    private Label ErrLbl;
     //Buttons
     @FXML
     private Button CreateBtn;
@@ -80,7 +83,9 @@ public class HomeView {
             CreateBtn.setOnAction(e -> {
                 createContacto();
             });
-            DeleteBtn.setOnAction(e -> {});
+            DeleteBtn.setOnAction(e -> {
+                deleteContacto();
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -119,9 +124,16 @@ public class HomeView {
         });
     }
 
+    // Create, Delete & FindByCriteria
 
     private void createContacto() {
         try {
+            List<TextField> fileds = Arrays.asList(
+                    NombreCreateTextField,
+                    TlfCreateTextFiel,
+                    EmailCreateTextField
+            );
+            utils.filterWhite(fileds, ErrorLbl);
             String[] direccionArr = {NumDireccion.getText(), CalleDireccion.getText(), LocalidadDireccion.getText(), ProvinciaDireccion.getText(), PaisDireccion.getText()};
             String direccion = String.join(", ", direccionArr);
 
@@ -147,6 +159,24 @@ public class HomeView {
         }
     }
 
+    private void deleteContacto() {
+        try {
+            List<TextField> fields = Arrays.asList( DeleteParamsTextField);
+            utils.filterWhite(fields, ErrorLbl);
+            String response = controller.deleteContacto(agendaInstance.getDbSelect(), DeleteParamsTextField.getText().toLowerCase());
+            if (response.contains("Error")) {
+                ErrLbl.getStyleClass().add("failed");
+            } else {
+                ErrLbl.getStyleClass().add("success");
+            }
+            ErrLbl.setText(response);
+            renderContactosThread();
+            clearDeleteFields();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
     private void clearCreateFields() {
         TlfCreateTextFiel.clear();
@@ -166,4 +196,16 @@ public class HomeView {
         });
         pause.play();
     }
+
+    private void clearDeleteFields() {
+        DeleteParamsTextField.clear();
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(10));
+        pause.setOnFinished(e -> {
+            ErrLbl.setText("");
+            ErrLbl.getStyleClass().removeAll("failed", "success");
+        });
+        pause.play();
+    }
+
 }

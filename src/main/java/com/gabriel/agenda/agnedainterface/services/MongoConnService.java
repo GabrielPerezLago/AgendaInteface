@@ -6,6 +6,7 @@ import com.gabriel.agenda.agnedainterface.models.Contacto;
 import com.gabriel.agenda.agnedainterface.models.NameDTO;
 import com.gabriel.agenda.agnedainterface.models.TelefonoDTO;
 import com.gabriel.agenda.agnedainterface.models.errors.CreateErrorsModel;
+import com.gabriel.agenda.agnedainterface.models.errors.DeleteErrorsModel;
 import com.gabriel.agenda.agnedainterface.services.interfaces.DataServiceImpl;
 import com.gabriel.agenda.agnedainterface.utils.DataUtils;
 import javafx.util.Pair;
@@ -54,7 +55,8 @@ public class MongoConnService implements DataServiceImpl {
         HttpResponse<String> response = service.deleteContactos(URI, json);
 
         if(response.statusCode() == 400) {
-            return response.body();
+            DeleteErrorsModel data = mapper.readValue(response.body(), DeleteErrorsModel.class);
+            return data.toString();
         } else {
             return "Contacto Eliminado corectamente";
         }

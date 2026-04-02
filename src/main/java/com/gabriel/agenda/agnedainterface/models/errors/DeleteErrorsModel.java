@@ -1,17 +1,19 @@
 package com.gabriel.agenda.agnedainterface.models.errors;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 public class DeleteErrorsModel {
     private String telefono;
-    private String email;
+    private String nombre;
 
     public DeleteErrorsModel() {}
 
-    public String getEmail() {
-        return email;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getTelefono() {
@@ -20,5 +22,15 @@ public class DeleteErrorsModel {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    @Override
+    public String toString() {
+        String[] str = {};
+        if(getTelefono()!=null) str = ArrayUtils.add(str, getTelefono());
+        if(getNombre()!=null) str = ArrayUtils.add(str, getNombre());
+
+        return "Error: " + String.join(", ", str);
+
     }
 }

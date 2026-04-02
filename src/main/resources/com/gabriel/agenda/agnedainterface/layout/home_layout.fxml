@@ -28,10 +28,10 @@
                 <content>
                     <VBox spacing="20" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
                         <Label style="-fx-font-size: 30px">Insertar Contacto</Label>
-                        <TextField fx:id="TlfCreateTextFiel" promptText="Télefono" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
-                        <TextField fx:id="NombreCreateTextField" promptText="Nombre" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
+                        <TextField fx:id="TlfCreateTextFiel" promptText="Télefono *" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
+                        <TextField fx:id="NombreCreateTextField" promptText="Nombre *" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
                         <TextField fx:id="ApellidosCreateTextField" promptText="Apellidos" maxWidth="500" minHeight="50"  styleClass="border_radius_text_field"/>
-                        <TextField fx:id="EmailCreateTextField" promptText="Correo Electronico" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
+                        <TextField fx:id="EmailCreateTextField" promptText="Correo Electronico *" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
                         <HBox alignment="CENTER" spacing="10">
                             <TextField fx:id="NumDireccion" promptText="Numero o Piso" minWidth="100" minHeight="50" styleClass="border_radius_text_field"/>
                             <TextField fx:id="CalleDireccion" promptText="Calle" minWidth="100" minHeight="50" styleClass="border_radius_text_field"/>
@@ -51,7 +51,8 @@
                 <content>
                     <VBox spacing="40" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
                         <Label style="-fx-font-size: 20px">Inserta el número de Télefono (con prefijo) o el Nombre del contacto</Label>
-                        <TextField promptText="Nombre o Télefono" maxWidth="500" minHeight="50" style="-fx-background-radius: 20px; -fx-border-radius: 20px; -fx-font-size: 15px"/>
+                        <TextField fx:id="DeleteParamsTextField" promptText="Nombre o Télefono *" maxWidth="500" minHeight="50" style="-fx-background-radius: 20px; -fx-border-radius: 20px; -fx-font-size: 15px"/>
+                        <Label fx:id="ErrLbl"></Label>
                         <Button fx:id="DeleteBtn" style="-fx-font-size: 15px; -fx-border-radius: 20px; -fx-background-radius: 20px; -fx-border-style: solid; -fx-border-color: black; -fx-border-width: 0.5"
                                 prefWidth="100">
                             Eliminar

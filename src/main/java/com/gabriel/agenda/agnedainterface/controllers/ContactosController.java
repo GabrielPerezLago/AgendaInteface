@@ -10,6 +10,7 @@ import javafx.util.Pair;
 public class ContactosController {
     private DataServiceImpl dataService;
     private static DataUtils utils = new DataUtils();
+
     public String createContacto(String service, Contacto contacto) throws Exception {
         initialiceService(service);
         String created = dataService.createContactos(contacto);
