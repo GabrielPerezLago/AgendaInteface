@@ -28,7 +28,7 @@
                 <content>
                     <VBox spacing="20" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
                         <Label style="-fx-font-size: 30px">Insertar Contacto</Label>
-                        <TextField fx:id="TlfCreateTextFiel" promptText="Télefono *" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
+                        <TextField fx:id="TlfCreateTextFiel" promptText="Télefono *" text="" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
                         <TextField fx:id="NombreCreateTextField" promptText="Nombre *" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>
                         <TextField fx:id="ApellidosCreateTextField" promptText="Apellidos" maxWidth="500" minHeight="50"  styleClass="border_radius_text_field"/>
                         <TextField fx:id="EmailCreateTextField" promptText="Correo Electronico *" maxWidth="500" minHeight="50" styleClass="border_radius_text_field"/>

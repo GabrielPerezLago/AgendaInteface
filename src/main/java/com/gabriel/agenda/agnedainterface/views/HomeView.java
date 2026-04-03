@@ -133,7 +133,13 @@ public class HomeView {
                     TlfCreateTextFiel,
                     EmailCreateTextField
             );
-            utils.filterWhite(fileds, ErrorLbl);
+            if (utils.isEmtyFields(fileds)) {
+                ErrorLbl.getStyleClass().add("failed");
+                ErrorLbl.setText("Campos obligatorios '*' no pueden estar en blanco");
+                PauseTransition pause = utils.toHiddeLabel(ErrorLbl);
+                pause.play();
+                return;
+            }
             String[] direccionArr = {NumDireccion.getText(), CalleDireccion.getText(), LocalidadDireccion.getText(), ProvinciaDireccion.getText(), PaisDireccion.getText()};
             String direccion = String.join(", ", direccionArr);
 
@@ -141,7 +147,7 @@ public class HomeView {
                     NombreCreateTextField.getText(),
                     ApellidosCreateTextField.getText(),
                     EmailCreateTextField.getText(),
-                    TlfCreateTextFiel.getText(),
+                    TlfCreateTextFiel.getText().replaceAll("\\s+", ""),
                     direccion
             );
 
@@ -162,7 +168,13 @@ public class HomeView {
     private void deleteContacto() {
         try {
             List<TextField> fields = Arrays.asList( DeleteParamsTextField);
-            utils.filterWhite(fields, ErrorLbl);
+            if (utils.isEmtyFields(fields)) {
+                ErrLbl.getStyleClass().add("failed");
+                ErrLbl.setText("Dos parametros no pueden estar en blanco");
+                PauseTransition pause = utils.toHiddeLabel(ErrLbl);
+                pause.play();
+                return;
+            }
             String response = controller.deleteContacto(agendaInstance.getDbSelect(), DeleteParamsTextField.getText().toLowerCase());
             if (response.contains("Error")) {
                 ErrLbl.getStyleClass().add("failed");
@@ -189,22 +201,13 @@ public class HomeView {
         ProvinciaDireccion.clear();
         PaisDireccion.clear();
 
-        PauseTransition pause = new PauseTransition(Duration.seconds(10));
-        pause.setOnFinished(e -> {
-            ErrorLbl.setText("");
-            ErrorLbl.getStyleClass().removeAll("failed", "success");
-        });
+        PauseTransition pause = utils.toHiddeLabel(ErrorLbl);
         pause.play();
     }
 
     private void clearDeleteFields() {
         DeleteParamsTextField.clear();
-
-        PauseTransition pause = new PauseTransition(Duration.seconds(10));
-        pause.setOnFinished(e -> {
-            ErrLbl.setText("");
-            ErrLbl.getStyleClass().removeAll("failed", "success");
-        });
+        PauseTransition pause = utils.toHiddeLabel(ErrLbl);
         pause.play();
     }
 

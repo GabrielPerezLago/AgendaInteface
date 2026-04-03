@@ -1,17 +1,28 @@
 package com.gabriel.agenda.agnedainterface.utils;
 
+import javafx.animation.PauseTransition;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
 
 import java.util.List;
 
 public class HomeViewUtils {
-    public void filterWhite(List<TextField> inputs, Label errorLbl) {
+    public Boolean isEmtyFields(List<TextField> inputs) {
         for(TextField input: inputs) {
             if (input.getText().trim().length() == 0) {
-                errorLbl.getStyleClass().add("failed");
-                errorLbl.setText("Los parametros marcados con ' * ' no pueden estar vacios ");
+                return true;
             }
         }
+        return false;
+    }
+
+    public PauseTransition toHiddeLabel(Label lbl) {
+        PauseTransition pause = new PauseTransition(Duration.seconds(10));
+        pause.setOnFinished(e -> {
+            lbl.setText("");
+            lbl.getStyleClass().removeAll("failed", "success");
+        });
+        return pause;
     }
 }
