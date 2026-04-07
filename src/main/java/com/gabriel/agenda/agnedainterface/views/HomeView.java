@@ -12,10 +12,8 @@ import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -32,8 +30,9 @@ public class HomeView {
     @FXML
     private Label JDBLabel;
 
+
     @FXML
-    private Tab contactosTab;
+    private ScrollPane ContactosContainer;
 
 
     //CREATE
@@ -69,6 +68,16 @@ public class HomeView {
     @FXML
     private Button DeleteBtn;
 
+
+    //FIND
+
+    @FXML
+    private TextField FindTextField;
+    @FXML
+    private ScrollPane FindContainer;
+
+
+
     @FXML
     public void initialize(){
         try {
@@ -86,6 +95,11 @@ public class HomeView {
             DeleteBtn.setOnAction(e -> {
                 deleteContacto();
             });
+
+            FindTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterContactos(newValue);
+            });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,7 +114,7 @@ public class HomeView {
             for (Contacto contacto : contactos) {
                 contactosContainer.getChildren().add(new ContactoCard(contacto));
             }
-            contactosTab.setContent(contactosContainer);
+            ContactosContainer.setContent(contactosContainer);
         });
     }
 
@@ -209,6 +223,36 @@ public class HomeView {
         DeleteParamsTextField.clear();
         PauseTransition pause = utils.toHiddeLabel(ErrLbl);
         pause.play();
+    }
+
+
+    //Find
+
+    private void filterContactos(String txt) {
+        if (contactos == null) {
+            return;
+        }
+
+        String filter = txt.toLowerCase().replaceAll("\\s+", "");
+
+        VBox container = new VBox();
+        container.setSpacing(10);
+        container.setAlignment(Pos.CENTER);
+        container.setFillWidth(true);
+        container.setPadding(new Insets(10, 10, 10, 10));
+
+        for (Contacto contacto : contactos) {
+            String content = contacto.getNombre().toUpperCase();
+            if(contacto.getApellidos() != null) content += contacto.getApellidos().toUpperCase();
+            content += contacto.getEmail() + contacto.getTelefono();
+            if(contacto.getDireccion() != null) content += contacto.getDireccion();
+
+            if (content.contains(filter)) {
+                container.getChildren().add(new ContactoCard(contacto));
+            }
+        }
+
+        FindContainer.setContent(container);
     }
 
 }

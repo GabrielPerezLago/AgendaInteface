@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import com.gabriel.agenda.agnedainterface.css.*?>
@@ -17,11 +15,62 @@
     AnchorPane.bottomAnchor="0.0">
         <tabs>
             <Tab text="Home">
-                <Label>Binevenido</Label>
+                <content>
+                    <VBox style="-fx-padding: 20px;" fillWidth="true" spacing="20" alignment="CENTER" maxWidth="Infinity">
+                        <VBox VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="100" styleClass="border_radius, setPadding" style="-fx-background-color: lightblue;">
+                            <Label styleClass="h1, black">
+                                Bienvenido a tu agenda de contactos
+                            </Label>
+                        </VBox>
+                        <VBox VBox.vgrow="ALWAYS" maxWidth="Infinity" styleClass="border_radius, setPadding" style="-fx-background-color: gray">
+                            <Label styleClass="h2, black, setPadding">
+                                Intrucciones
+                            </Label>
+                            <Label styleClass="txt, black, setMiniPadding">
+                                La aplicación esta compuesta por una serie de pestañas con la que podras manejar tu lista de contactos.
+                            </Label>
+                            <Label styleClass="black, txt, setMiniPadding">
+                                1. Lista:
+                            </Label>
+                            <Label styleClass="black, txt, setMiniPadding">
+                                - La lista te muestra los contactos que tienes en esa base de datos.
+                            </Label>
+                            <Label styleClass="black, txt, setMiniPadding">
+                                2. Insertar:
+                            </Label>
+                            <Label styleClass="black, txt, setMiniPadding">
+                                - En esta pestaña puedes instar nuevos contactos a la lista de contactos
+                            </Label>
+                            <Label styleClass="setMiniPadding, black, txt">
+                                3. Eliminar:
+                            </Label>
+                            <Label styleClass="txt, black, setMiniPadding">
+                                 - En esta pestaña puede eliminar contactos de tu lista insertando o su télefono o el nombre.
+                            </Label>
+                            <Label styleClass="setMiniPadding, black, txt">
+                                4. Buscar:
+                            </Label>
+                            <Label styleClass="black, setMiniPadding, txt">
+                                 - En esta pestaña puedes buscar los contactos de tu lista en tiempo real
+                            </Label>
+                            <Label styleClass="black, setMiniPadding, txt">
+                                Notas:
+                            </Label>
+                            <Label styleClass="black, txt_mini">
+                                - El numero de telefono de los contactos , tanto pora borrar como para añadir deben de tener prefijo.
+                            </Label>
+                            <Label styleClass="black, txt_mini">
+                                - Los parametros que contengan el el texto un " * " son obligatorios.
+                            </Label>
+                        </VBox>
+                    </VBox>
+                </content>
             </Tab>
             <Tab fx:id="contactosTab" text="Lista" style="-fx-font-size: 15px">
                 <content>
+                    <ScrollPane fx:id="ContactosContainer" maxWidth="Infinity"  VBox.vgrow="ALWAYS" fitToWidth="true">
 
+                    </ScrollPane>
                 </content>
             </Tab>
             <Tab text="Insertar" style="-fx-font-size: 15px">
@@ -61,7 +110,16 @@
                 </content>
             </Tab>
             <Tab text="Buscar" style="-fx-font-size: 15px">
+                <content>
+                    <VBox spacing="40" alignment="TOP_CENTER" maxWidth="Infinity" maxHeight="Infinity">
+                        <VBox VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="100" styleClass="setPadding">
+                            <TextField fx:id="FindTextField" promptText="Buscar : Nombre, Telefono o Email" maxWidth="Infinity" minHeight="80" styleClass="border_radius_text_field"/>
+                        </VBox>
+                        <ScrollPane fx:id="FindContainer" maxWidth="Infinity"  VBox.vgrow="ALWAYS" fitToWidth="true">
 
+                        </ScrollPane>
+                    </VBox>
+                </content>
             </Tab>
         </tabs>
     </TabPane>

@@ -9,3 +9,10 @@
     -fx-border-radius: 20px;
     -fx-font-size: 15px;
 }
+
+.setPadding {
+    -fx-padding: 20px;
+}
+.setMiniPadding {
+    -fx-padding: 5px;
+}
