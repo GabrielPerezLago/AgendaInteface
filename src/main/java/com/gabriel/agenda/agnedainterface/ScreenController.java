@@ -1,7 +1,7 @@
 package com.gabriel.agenda.agnedainterface;
 
+import atlantafx.base.theme.PrimerDark;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +14,9 @@ public class ScreenController extends Application {
     public void start(Stage primaryStage) throws Exception {
         Image icon = new Image(getClass().getResource("/com/gabriel/agenda/agnedainterface/assets/icons/icon.png").toString());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/gabriel/agenda/agnedainterface/layout/init_layout.fxml"));
+        setUserAgentStylesheet(
+                new PrimerDark().getUserAgentStylesheet()
+        );
 
         Parent root = fxmlLoader.load();
 

@@ -1,5 +1,6 @@
 .card {
     -fx-padding: 20px;
     -fx-font-size: 20px;
-    -fx-background-color: gray;
+    -fx-background-color: white;
+    -fx-text-fill: black;
 }

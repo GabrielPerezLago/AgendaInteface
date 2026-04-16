@@ -8,7 +8,9 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.gabriel.agenda.agnedainterface.views.HomeView"
             prefHeight="400.0" prefWidth="600.0">
-    <HBox AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0"><Label fx:id="JDBLabel" style="-fx-font-size: 20px; "/></HBox>
+    <HBox AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" alignment="TOP_CENTER">
+        <Label fx:id="JDBLabel" style="-fx-font-size: 20px;" />
+    </HBox>
     <TabPane AnchorPane.topAnchor="50.0"
     AnchorPane.rightAnchor="0.0"
     AnchorPane.leftAnchor="0.0"
@@ -17,49 +19,49 @@
             <Tab text="Home">
                 <content>
                     <VBox style="-fx-padding: 20px;" fillWidth="true" spacing="20" alignment="CENTER" maxWidth="Infinity">
-                        <VBox VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="100" styleClass="border_radius, setPadding" style="-fx-background-color: lightblue;">
-                            <Label styleClass="h1, black">
+                        <VBox VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="100" styleClass="border_radius, setPadding" style="-fx-background-color: blue;">
+                            <Label styleClass="h1, white">
                                 Bienvenido a tu agenda de contactos
                             </Label>
                         </VBox>
-                        <VBox VBox.vgrow="ALWAYS" maxWidth="Infinity" styleClass="border_radius, setPadding" style="-fx-background-color: gray">
-                            <Label styleClass="h2, black, setPadding">
+                        <VBox VBox.vgrow="ALWAYS" maxWidth="Infinity" styleClass="border_radius, setPadding" style="">
+                            <Label styleClass="h2, white, setPadding">
                                 Intrucciones
                             </Label>
-                            <Label styleClass="txt, black, setMiniPadding">
+                            <Label styleClass="txt, white, setMiniPadding">
                                 La aplicación esta compuesta por una serie de pestañas con la que podras manejar tu lista de contactos.
                             </Label>
-                            <Label styleClass="black, txt, setMiniPadding">
+                            <Label styleClass="white, txt, setMiniPadding">
                                 1. Lista:
                             </Label>
-                            <Label styleClass="black, txt, setMiniPadding">
+                            <Label styleClass="white, txt, setMiniPadding">
                                 - La lista te muestra los contactos que tienes en esa base de datos.
                             </Label>
-                            <Label styleClass="black, txt, setMiniPadding">
+                            <Label styleClass="white, txt, setMiniPadding">
                                 2. Insertar:
                             </Label>
-                            <Label styleClass="black, txt, setMiniPadding">
+                            <Label styleClass="white, txt, setMiniPadding">
                                 - En esta pestaña puedes instar nuevos contactos a la lista de contactos
                             </Label>
-                            <Label styleClass="setMiniPadding, black, txt">
+                            <Label styleClass="setMiniPadding, white, txt">
                                 3. Eliminar:
                             </Label>
-                            <Label styleClass="txt, black, setMiniPadding">
+                            <Label styleClass="txt, white, setMiniPadding">
                                  - En esta pestaña puede eliminar contactos de tu lista insertando o su télefono o el nombre.
                             </Label>
-                            <Label styleClass="setMiniPadding, black, txt">
+                            <Label styleClass="setMiniPadding, white, txt">
                                 4. Buscar:
                             </Label>
-                            <Label styleClass="black, setMiniPadding, txt">
+                            <Label styleClass="white, setMiniPadding, txt">
                                  - En esta pestaña puedes buscar los contactos de tu lista en tiempo real
                             </Label>
-                            <Label styleClass="black, setMiniPadding, txt">
+                            <Label styleClass="white, setMiniPadding, txt">
                                 Notas:
                             </Label>
-                            <Label styleClass="black, txt_mini">
+                            <Label styleClass="white, txt_mini">
                                 - El numero de telefono de los contactos , tanto pora borrar como para añadir deben de tener prefijo.
                             </Label>
-                            <Label styleClass="black, txt_mini">
+                            <Label styleClass="white, txt_mini">
                                 - Los parametros que contengan el el texto un " * " son obligatorios.
                             </Label>
                         </VBox>
