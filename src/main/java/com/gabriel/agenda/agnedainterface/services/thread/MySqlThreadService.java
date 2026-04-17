@@ -32,6 +32,7 @@ public class MySqlThreadService extends Thread implements ThreadServiceImpl {
 
             } catch (Exception ex) {
                 ex.printStackTrace();
+                callback.accept(null);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

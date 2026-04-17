@@ -1,6 +1,7 @@
 package com.gabriel.agenda.agnedainterface.components;
 
 import com.gabriel.agenda.agnedainterface.models.Contacto;
+import com.gabriel.agenda.agnedainterface.utils.StageUtils;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -12,10 +13,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class ContactoCard extends HBox {
+    private final StageUtils utils = new StageUtils();
 
     public ContactoCard(Contacto contacto) {
         VBox imageContainer = new VBox();
-        imageContainer.getChildren().addAll(this.renderizeCardImage("/com/gabriel/agenda/agnedainterface/assets/images/user.png", 200));
+        imageContainer.getChildren().addAll(utils.renderizeImageView("/com/gabriel/agenda/agnedainterface/assets/images/user.png", 200));
         imageContainer.setAlignment(Pos.CENTER);
         VBox.getVgrow(imageContainer);
 
@@ -69,12 +71,6 @@ public class ContactoCard extends HBox {
         setSpacing(50);
         getStyleClass().addAll("card" , "border_radius");
         getChildren().addAll(imageContainer, dataContainer);
-    }
-
-    private ImageView renderizeCardImage(String url, double width) {
-        Image image = new Image(getClass().getResourceAsStream(url), width, width, true, true);
-        image.getWidth();
-        return new ImageView(image);
     }
 
     private void setChildrenColor(Node father, Color clr, int fontSize) {

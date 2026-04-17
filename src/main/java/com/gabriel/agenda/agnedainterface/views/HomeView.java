@@ -1,6 +1,7 @@
 package com.gabriel.agenda.agnedainterface.views;
 
 import com.gabriel.agenda.agnedainterface.components.ContactoCard;
+import com.gabriel.agenda.agnedainterface.components.ErrorScreen;
 import com.gabriel.agenda.agnedainterface.controllers.ContactosController;
 import com.gabriel.agenda.agnedainterface.instances.AgendaInstance;
 import com.gabriel.agenda.agnedainterface.instances.ContactosInstance;
@@ -26,7 +27,6 @@ public class HomeView {
     private List<Contacto> contactos;
     private ContactosController controller = new ContactosController();
     private HomeViewUtils utils = new HomeViewUtils();
-
     @FXML
     private Label JDBLabel;
 
@@ -102,6 +102,7 @@ public class HomeView {
 
         } catch (Exception e) {
             e.printStackTrace();
+
         }
     }
 
@@ -133,6 +134,12 @@ public class HomeView {
 
     private void onContactosLoad(List<Contacto> list){
         Platform.runLater(() -> {
+            if (list == null) {
+                ContactosContainer.setContent(new ErrorScreen(() -> {
+                    renderContactosThread();
+                }));
+                return;
+            }
             this.contactos = list;
             renderCardsContactos();
         });

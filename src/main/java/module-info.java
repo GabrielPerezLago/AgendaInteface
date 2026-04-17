@@ -12,6 +12,7 @@ module com.gabriel.agenda.agnedainterface {
     requires java.sql;
     requires org.apache.commons.lang3;
     requires atlantafx.base;
+    requires net.bytebuddy;
 
     opens com.gabriel.agenda.agnedainterface to javafx.fxml;
     exports com.gabriel.agenda.agnedainterface;

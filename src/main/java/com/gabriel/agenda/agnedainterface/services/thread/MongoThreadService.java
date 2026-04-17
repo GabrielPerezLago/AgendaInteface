@@ -33,6 +33,7 @@ public class MongoThreadService extends Thread implements ThreadServiceImpl {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+            callback.accept(null);
         }
     }
 
