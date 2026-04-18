@@ -99,9 +99,11 @@ public class HomeView {
 
             JDBLabel.setText(agendaInstance.getDbSelect().toUpperCase());
             if (agendaInstance.getDbSelect().equals("mongo")){
-                DBContainer.getChildren().add(STAGE_UTILS.renderizeImageView("", 100));
+                DBContainer.getChildren().add(STAGE_UTILS.renderizeImageView("/com/gabriel/agenda/agnedainterface/assets/images/mongo.png", 30));
             } else if (agendaInstance.getDbSelect().equals("mysql")){
-                DBContainer.getChildren().add(STAGE_UTILS.renderizeImageView("", 100));
+                System.out.println(agendaInstance.getDbSelect());
+                System.out.println(getClass().getResource("/com/gabriel/agenda/agnedainterface/assets/images/mysql.png"));
+                DBContainer.getChildren().add(STAGE_UTILS.renderizeImageView("/com/gabriel/agenda/agnedainterface/assets/images/mysql.png", 30));
             }
 
             if (agendaInstance.getDbSelect() != null && !agendaInstance.getDbSelect().isEmpty()) {

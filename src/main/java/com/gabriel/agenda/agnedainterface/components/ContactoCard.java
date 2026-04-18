@@ -49,7 +49,7 @@ public class ContactoCard extends HBox {
         Label telefono = new Label(contacto.getTelefono());
         dataContactosContainer.getChildren().add(telefono);
 
-        if (this.noText(contacto.getDireccion())) {
+        if (!this.noText(contacto.getDireccion())) {
             Label direccion = new Label(contacto.getDireccion());
             dataContactosContainer.getChildren().add(direccion);
         }
@@ -97,6 +97,7 @@ public class ContactoCard extends HBox {
 
 
     private boolean noText(String text) {
-        return text.replace(" ", "").trim().isEmpty();
+        if (text == null) return true;
+        return text.replace(",", "").trim().isEmpty();
     }
 }

@@ -33,8 +33,13 @@ public class StageUtils {
 
 
     public ImageView renderizeImageView(@NeverNull String url, double width) {
-        Image image = new Image(getClass().getResourceAsStream(url), width, width, true, true);
-        image.getWidth();
-        return new ImageView(image);
+        try {
+            Image image = new Image(getClass().getResourceAsStream(url), width, width, true, true);
+            image.getWidth();
+            return new ImageView(image);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

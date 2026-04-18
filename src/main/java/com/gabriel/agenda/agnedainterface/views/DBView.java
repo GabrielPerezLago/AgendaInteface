@@ -9,11 +9,11 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class DBView {
+    private static final StageUtils STAGE_UTILS = new StageUtils();
     private AgendaInstance inst = AgendaInstance.getInstance();
     private StageUtils sUtils = new StageUtils();
 
-    @FXML
-    private AnchorPane anchorPane;
+
     @FXML
     private Button JButtonMongo;
 
@@ -25,6 +25,9 @@ public class DBView {
     public void initialize(){
         setEvent(JButtonMongo, "mongo");
         setEvent(JButtonMysql, "mysql");
+
+        JButtonMongo.setGraphic(STAGE_UTILS.renderizeImageView("/com/gabriel/agenda/agnedainterface/assets/images/mongo.png", 50));
+        JButtonMysql.setGraphic(STAGE_UTILS.renderizeImageView("/com/gabriel/agenda/agnedainterface/assets/images/mysql.png", 40));
     }
 
     private void setEvent(Button btn, String db){
