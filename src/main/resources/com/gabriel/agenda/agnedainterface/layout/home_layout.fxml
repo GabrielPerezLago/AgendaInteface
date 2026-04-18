@@ -8,10 +8,10 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.gabriel.agenda.agnedainterface.views.HomeView"
             prefHeight="400.0" prefWidth="600.0">
-    <HBox AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" alignment="TOP_CENTER">
+    <HBox fx:id="DBContainer" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" alignment="TOP_CENTER">
         <Label fx:id="JDBLabel" style="-fx-font-size: 20px;" />
     </HBox>
-    <TabPane AnchorPane.topAnchor="50.0"
+    <TabPane fx:id="ContactosTabPanel" AnchorPane.topAnchor="50.0"
     AnchorPane.rightAnchor="0.0"
     AnchorPane.leftAnchor="0.0"
     AnchorPane.bottomAnchor="0.0">
@@ -75,7 +75,7 @@
                     </ScrollPane>
                 </content>
             </Tab>
-            <Tab text="Insertar" style="-fx-font-size: 15px">
+            <Tab fx:id="createTab" text="Insertar" style="-fx-font-size: 15px">
                 <content>
                     <VBox spacing="20" alignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
                         <Label style="-fx-font-size: 30px">Insertar Contacto</Label>

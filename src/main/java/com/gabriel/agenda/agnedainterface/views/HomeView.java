@@ -9,12 +9,15 @@ import com.gabriel.agenda.agnedainterface.models.Contacto;
 import com.gabriel.agenda.agnedainterface.services.thread.MongoThreadService;
 import com.gabriel.agenda.agnedainterface.services.thread.MySqlThreadService;
 import com.gabriel.agenda.agnedainterface.utils.HomeViewUtils;
+import com.gabriel.agenda.agnedainterface.utils.StageUtils;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.chart.ScatterChart;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -22,18 +25,30 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HomeView {
+    private static final StageUtils STAGE_UTILS = new StageUtils();
     private AgendaInstance agendaInstance = AgendaInstance.getInstance();
     private ContactosInstance contactosInstance = ContactosInstance.getInstance();
     private List<Contacto> contactos;
     private ContactosController controller = new ContactosController();
     private HomeViewUtils utils = new HomeViewUtils();
+
+    // Tabs
+    @FXML
+    TabPane ContactosTabPanel;
+
+    @FXML
+    Tab contactosTab;
+
+
+    @FXML
+    HBox DBContainer;
+
     @FXML
     private Label JDBLabel;
 
 
     @FXML
     private ScrollPane ContactosContainer;
-
 
     //CREATE
     @FXML
@@ -83,6 +98,11 @@ public class HomeView {
         try {
 
             JDBLabel.setText(agendaInstance.getDbSelect().toUpperCase());
+            if (agendaInstance.getDbSelect().equals("mongo")){
+                DBContainer.getChildren().add(STAGE_UTILS.renderizeImageView("", 100));
+            } else if (agendaInstance.getDbSelect().equals("mysql")){
+                DBContainer.getChildren().add(STAGE_UTILS.renderizeImageView("", 100));
+            }
 
             if (agendaInstance.getDbSelect() != null && !agendaInstance.getDbSelect().isEmpty()) {
                 renderContactosThread();
@@ -90,10 +110,20 @@ public class HomeView {
 
 
             CreateBtn.setOnAction(e -> {
-                createContacto();
+                try {
+                    createContacto();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    ContactosTabPanel.getSelectionModel().select(contactosTab);
+                }
             });
             DeleteBtn.setOnAction(e -> {
-                deleteContacto();
+                try {
+                    deleteContacto();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    ContactosTabPanel.getSelectionModel().select(contactosTab);
+                }
             });
 
             FindTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -147,8 +177,7 @@ public class HomeView {
 
     // Create, Delete & FindByCriteria
 
-    private void createContacto() {
-        try {
+    private void createContacto() throws Exception {
             List<TextField> fileds = Arrays.asList(
                     NombreCreateTextField,
                     TlfCreateTextFiel,
@@ -181,33 +210,27 @@ public class HomeView {
             ErrorLbl.setText(txt);
             renderContactosThread();
             clearCreateFields();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 
-    private void deleteContacto() {
-        try {
-            List<TextField> fields = Arrays.asList( DeleteParamsTextField);
-            if (utils.isEmtyFields(fields)) {
-                ErrLbl.getStyleClass().add("failed");
-                ErrLbl.setText("Dos parametros no pueden estar en blanco");
-                PauseTransition pause = utils.toHiddeLabel(ErrLbl);
-                pause.play();
-                return;
-            }
-            String response = controller.deleteContacto(agendaInstance.getDbSelect(), DeleteParamsTextField.getText().toLowerCase());
-            if (response.contains("Error")) {
-                ErrLbl.getStyleClass().add("failed");
-            } else {
-                ErrLbl.getStyleClass().add("success");
-            }
-            ErrLbl.setText(response);
-            renderContactosThread();
-            clearDeleteFields();
-        } catch(Exception ex) {
-            ex.printStackTrace();
+    private void deleteContacto() throws Exception {
+
+        List<TextField> fields = Arrays.asList( DeleteParamsTextField);
+        if (utils.isEmtyFields(fields)) {
+            ErrLbl.getStyleClass().add("failed");
+            ErrLbl.setText("Dos parametros no pueden estar en blanco");
+            PauseTransition pause = utils.toHiddeLabel(ErrLbl);
+            pause.play();
+            return;
         }
+        String response = controller.deleteContacto(agendaInstance.getDbSelect(), DeleteParamsTextField.getText().toLowerCase());
+        if (response.contains("Error")) {
+            ErrLbl.getStyleClass().add("failed");
+        } else {
+            ErrLbl.getStyleClass().add("success");
+        }
+        ErrLbl.setText(response);
+        renderContactosThread();
+        clearDeleteFields();
     }
 
 
@@ -236,30 +259,34 @@ public class HomeView {
     //Find
 
     private void filterContactos(String txt) {
-        if (contactos == null) {
-            return;
-        }
-
-        String filter = txt.toLowerCase().replaceAll("\\s+", "");
-
-        VBox container = new VBox();
-        container.setSpacing(10);
-        container.setAlignment(Pos.CENTER);
-        container.setFillWidth(true);
-        container.setPadding(new Insets(10, 10, 10, 10));
-
-        for (Contacto contacto : contactos) {
-            String content = contacto.getNombre().toUpperCase();
-            if(contacto.getApellidos() != null) content += contacto.getApellidos().toUpperCase();
-            content += contacto.getEmail() + contacto.getTelefono();
-            if(contacto.getDireccion() != null) content += contacto.getDireccion();
-
-            if (content.contains(filter)) {
-                container.getChildren().add(new ContactoCard(contacto));
+        try {
+            if (contactos == null) {
+                return;
             }
-        }
 
-        FindContainer.setContent(container);
+            String filter = txt.toLowerCase().replaceAll("\\s+", "");
+
+            VBox container = new VBox();
+            container.setSpacing(10);
+            container.setAlignment(Pos.CENTER);
+            container.setFillWidth(true);
+            container.setPadding(new Insets(10, 10, 10, 10));
+
+            for (Contacto contacto : contactos) {
+                String content = contacto.getNombre().toUpperCase();
+                if(contacto.getApellidos() != null) content += contacto.getApellidos().toUpperCase();
+                content += contacto.getEmail() + contacto.getTelefono();
+                if(contacto.getDireccion() != null) content += contacto.getDireccion();
+
+                if (content.contains(filter)) {
+                    container.getChildren().add(new ContactoCard(contacto));
+                }
+            }
+
+            FindContainer.setContent(container);
+        } catch (Exception e) {
+            FindContainer.setContent(new ErrorScreen(() -> { renderContactosThread(); }));
+        }
     }
 
 }
